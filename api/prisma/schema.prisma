@@ -1,0 +1,45 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Defines the two types of library users
+enum Role {
+  PATRON
+  LIBRARIAN
+}
+
+// Stores library users
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  role      Role     @default(PATRON)
+  createdAt DateTime @default(now())
+}
+
+// Stores book categories
+model Genre {
+  id    String @id @default(uuid())
+  name  String @unique
+  books Book[]
+}
+
+// Stores library books
+model Book {
+  id            String   @id @default(uuid())
+  title         String
+  author        String
+  isbn          String   @unique
+  publishedYear Int?
+
+  genreId String
+  genre   Genre  @relation(fields: [genreId], references: [id])
+
+  createdAt DateTime @default(now())
+}
