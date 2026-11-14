@@ -16,3 +16,4 @@ export class PrismaService
     console.log('Connected to PostgreSQL through Prisma!');
   }
 }
+
