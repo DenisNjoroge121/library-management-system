@@ -1,17 +1,13 @@
-
-import {
-  IsNotEmpty,
-  IsOptional,
-  IsString,
-  MinLength,
-  MaxLength,
-} from 'class-validator';
+import { IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class UpdateGenreDto {
   @IsOptional()
   @IsString()
-  @IsNotEmpty()
-  @MinLength(2)
-  @MaxLength(50)
+  @MaxLength(100)
   name?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(500)
+  description?: string;
 }
