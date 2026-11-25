@@ -6,8 +6,8 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
 export default function HomePage() {
   const [genres, setGenres] = useState([]);
-  const [selectedGenreId, setSelectedGenreId] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
+  const [genreId, setGenreId] = useState('');
+  const [search, setSearch] = useState('');
   const [sortBy, setSortBy] = useState('title');
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function HomePage() {
   }, []);
 
   const handleSearch = useCallback((value) => {
-    setSearchTerm(value);
+    setSearch(value);
   }, []);
 
   return (
@@ -38,7 +38,7 @@ export default function HomePage() {
         </p>
 
         <div className="mt-5 flex flex-col md:flex-row gap-3">
-          <SearchBar initialValue={searchTerm} onSearch={handleSearch} />
+          <SearchBar initialValue={search} onSearch={handleSearch} />
 
           <div className="flex flex-col sm:flex-row gap-3">
             <div>
@@ -47,8 +47,8 @@ export default function HomePage() {
               </label>
               <select
                 id="genre-filter"
-                value={selectedGenreId}
-                onChange={(e) => setSelectedGenreId(e.target.value)}
+                value={genreId}
+                onChange={(e) => setGenreId(e.target.value)}
                 className="w-full sm:w-48 rounded-lg border border-slate-300 bg-white py-2.5 px-3 text-sm text-slate-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
               >
                 <option value="">All Genres</option>
@@ -78,11 +78,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <BookGrid
-        genreId={selectedGenreId}
-        search={searchTerm}
-        sortBy={sortBy}
-      />
+      <BookGrid genreId={genreId} search={search} sortBy={sortBy} />
     </div>
   );
 }

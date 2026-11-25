@@ -237,7 +237,7 @@
           "request": {
             "method": "GET",
             "url": {
-              "raw": "{{baseUrl}}/books?genreId=1&search=Dune&page=1&limit=10",
+              "raw": "{{baseUrl}}/books?genreId=1&search=Hobbit&page=1&limit=10",
               "host": [
                 "{{baseUrl}}"
               ],
@@ -251,7 +251,7 @@
                 },
                 {
                   "key": "search",
-                  "value": "Dune"
+                  "value": "Hobbit"
                 },
                 {
                   "key": "page",
@@ -297,7 +297,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"title\": \"Foundation\",\n  \"author\": \"Isaac Asimov\",\n  \"isbn\": \"9780553293357\",\n  \"totalCopies\": 5,\n  \"genreId\": 1,\n  \"publishedYear\": 1951,\n  \"description\": \"Hari Seldon develops psychohistory to preserve human knowledge across a falling galactic empire.\"\n}"
+              "raw": "{\n  \"title\": \"The Fellowship of the Ring\",\n  \"author\": \"J.R.R. Tolkien\",\n  \"isbn\": \"9780547928210\",\n  \"description\": \"A ringbearer sets out to destroy an ancient ring of power.\",\n  \"totalCopies\": 5,\n  \"genreId\": 1\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/books",
@@ -351,13 +351,13 @@
               }
             ],
             "url": {
-              "raw": "{{baseUrl}}/books/19",
+              "raw": "{{baseUrl}}/books/17",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "books",
-                "19"
+                "17"
               ]
             }
           }

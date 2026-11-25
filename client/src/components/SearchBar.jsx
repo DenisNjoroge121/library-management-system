@@ -6,7 +6,7 @@ export default function SearchBar({ initialValue = '', onSearch }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       onSearch(query);
-    }, 350);
+    }, 400);
 
     return () => clearTimeout(timer);
   }, [query, onSearch]);
@@ -35,7 +35,7 @@ export default function SearchBar({ initialValue = '', onSearch }) {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search books by title or author..."
+        placeholder="Search by title or author..."
         className="block w-full rounded-lg border border-slate-300 bg-white py-2.5 pl-10 pr-10 text-sm text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
       />
       {query && (

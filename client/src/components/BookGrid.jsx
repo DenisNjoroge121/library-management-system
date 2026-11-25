@@ -55,7 +55,7 @@ export default function BookGrid({ genreId, search, sortBy = 'title' }) {
         });
 
         if (!response.ok) {
-          throw new Error(`Failed to fetch catalog (HTTP ${response.status})`);
+          throw new Error(`Could not load books right now. (HTTP ${response.status})`);
         }
 
         const payload = await response.json();
@@ -64,7 +64,7 @@ export default function BookGrid({ genreId, search, sortBy = 'title' }) {
         setMeta(payload.meta || null);
       } catch (err) {
         if (err.name !== 'AbortError') {
-          setError(err.message || 'Unable to load books from the server.');
+          setError('Could not load books right now.');
         }
       } finally {
         if (!controller.signal.aborted) {
@@ -97,13 +97,7 @@ export default function BookGrid({ genreId, search, sortBy = 'title' }) {
         role="alert"
         className="rounded-xl border border-rose-200 bg-rose-50 p-6 text-center"
       >
-        <h3 className="text-base font-semibold text-rose-800">
-          Could not load the book catalog
-        </h3>
-        <p className="mt-1 text-sm text-rose-600">{error}</p>
-        <p className="mt-2 text-xs text-rose-500">
-          Make sure the NestJS backend is running at {API_URL}.
-        </p>
+        <p className="text-sm font-medium text-rose-700">{error}</p>
       </div>
     );
   }
@@ -111,10 +105,7 @@ export default function BookGrid({ genreId, search, sortBy = 'title' }) {
   if (books.length === 0) {
     return (
       <div className="rounded-xl border border-dashed border-slate-300 bg-white p-12 text-center">
-        <h3 className="text-base font-semibold text-slate-900">No books found</h3>
-        <p className="mt-1 text-sm text-slate-500">
-          Try adjusting your search query or clearing the selected genre filter.
-        </p>
+        <p className="text-sm font-medium text-slate-600">No books found.</p>
       </div>
     );
   }
