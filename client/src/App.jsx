@@ -22,7 +22,7 @@ export default function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route
-              path="/bookings"
+              path="/booking"
               element={
                 <ProtectedRoute>
                   <SpaceBookingPage />
@@ -33,7 +33,7 @@ export default function App() {
         </main>
 
         <footer className="border-t border-slate-200 bg-white py-6 text-center text-xs text-slate-500">
-          Athenaeum Library Management System &bull; Patron Catalog &amp; Bookings
+          Athenaeum Library Management System
         </footer>
       </div>
     </ReadingListProvider>

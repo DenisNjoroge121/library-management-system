@@ -4,16 +4,11 @@ import { useReadingList } from '../context/ReadingListContext.jsx';
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const { count, clearList } = useReadingList();
-
-  const token = localStorage.getItem('token') || localStorage.getItem('access_token');
-  const userRaw = localStorage.getItem('user');
-  const user = userRaw ? JSON.parse(userRaw) : null;
+  const { readingList, clearList } = useReadingList();
+  const token = localStorage.getItem('token');
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('user');
     clearList();
     navigate('/login');
   };
@@ -35,7 +30,7 @@ export default function Navbar() {
           <Link to="/" className="font-medium text-slate-700 hover:text-indigo-600">
             Catalog
           </Link>
-          <Link to="/bookings" className="font-medium text-slate-700 hover:text-indigo-600">
+          <Link to="/booking" className="font-medium text-slate-700 hover:text-indigo-600">
             Book a Space
           </Link>
 
@@ -45,25 +40,18 @@ export default function Navbar() {
               data-testid="reading-list-count"
               className="inline-flex items-center justify-center rounded-full bg-indigo-600 text-white w-5 h-5 text-[11px]"
             >
-              {count}
+              {readingList.length}
             </span>
           </span>
 
           {token ? (
-            <div className="flex items-center gap-3">
-              {user?.email && (
-                <span className="hidden sm:inline text-xs text-slate-500">
-                  {user.email}
-                </span>
-              )}
-              <button
-                type="button"
-                onClick={handleLogout}
-                className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50"
-              >
-                Logout
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50"
+            >
+              Logout
+            </button>
           ) : (
             <div className="flex items-center gap-2">
               <Link
